@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTubeUI_Assesment</title>
     <link href="src/style.css" rel="stylesheet">
+    <script src="src/script.js" defer>
+    </script>
 </head>
 
 <body>
     <header class="header">
-        <div style="display: flex;align-items: center;">
-            <img src="assets/icons/menu_icon.png" alt="menu" class="menu-icon">
+        <div onclick="toggleShowSearch()" id="back-icon">
+            <img src="assets/icons/back-icon.png" alt="search" class="search-icon">
+        </div>
+        <div id="logo-cont" class="brand-info-container" style="margin-left: 10px;">
+            <img src="assets/icons/menu_icon.png" onclick="toggleMenu()" alt="menu" class="menu-icon">
             <div class="icon-container">
                 <img src="assets/icons/youtube_icon.png" alt="YouTube logo" class="youtube-icon">
                 <div class="youtube-title">
@@ -19,25 +24,44 @@
                 </div>
             </div>
         </div>
-        <div style="display: flex;">
+        <div class="search-view">
             <input type="text" id="search" class="search" name="search" placeholder="Search">
-            <div class="search-icon-container">
+            <button class="search-icon-container" onclick="logSearchValue()">
                 <img src="assets/icons/search-icon.png" alt="search" class="search-icon">
+            </button>
+            <div class="circle-icon-container">
+                <img src="assets/icons/mic-icon.png" alt="search" class="mic-icon">
             </div>
         </div>
-        <div style="display: flex;align-items: center;">
-            <div style="position: relative;">
+        <div class="brand-info-container">
+            <div id="search-action-cont" onclick="toggleShowSearch()" class="mob-search-icon-container">
+                <img src="assets/icons/search-icon.png" alt="search" class="mob-search-icon">
+            </div>
+            <div id="noti-cont" class="notification-container">
                 <img src="assets/icons/bell-notification.png" alt="menu" class="bell-icon">
-                <div
-                    style="height: 15px;width: 25px; border-radius:100px;background-color: red;position: absolute;top: 1px;left: 12px;color: white;font-size: 10px;display: flex;align-items: center;justify-content: center;">
+                <div class="notification-badge">
                     10+
                 </div>
             </div>
-            <div class="profile">
+            <div id="profile-cont" class="profile">
                 <img src="assets/icons/profile-icon.png" alt="menu" class="profile-icon">
             </div>
         </div>
     </header>
+
+    <main style="display: flex;">
+        <div id="sidebar-container">
+            <!-- logic written in js for rendering list of side bar items -->
+        </div>
+        <!-- logic written in js for rendering list of videos -->
+        <div id="video-container">
+
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
 </body>
 
 </html>
