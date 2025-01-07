@@ -1,9 +1,9 @@
 const menuItems = [
-    { name: "Home", link: "/home", icon: "assets/icons/home.png" },
-    { name: "Shorts", link: "/shorts", icon: "assets/icons/shorts.png" },
-    { name: "Subscriptions", link: "/subscriptions", icon: "assets/icons/subscriptions.png" },
-    { name: "Library", link: "/library", icon: "assets/icons/library.png" },
-    { name: "History", link: "/history", icon: "assets/icons/history.png" }
+    { name: "Home", link: "src/pages/home.html", icon: "assets/icons/home.png" },
+    { name: "Shorts", link: "src/pages/shorts", icon: "assets/icons/shorts.png" },
+    { name: "Subscriptions", link: "src/pages/subscriptions", icon: "assets/icons/subscriptions.png" },
+    { name: "Library", link: "src/pages/library", icon: "assets/icons/library.png" },
+    { name: "History", link: "src/pages/history", icon: "assets/icons/history.png" }
 ];
 
 const sidebar_container = document.getElementById("sidebar-container");
@@ -50,19 +50,39 @@ videoItems.forEach((item) => {
     const videoItems = document.createElement("div");
     videoItems.style.flexDirection = "column";
     videoItems.style.margin = "10px";
-    videoItems.style.width = "350px";
+    videoItems.style.width = "26rem";
+    videoItems.style.cursor = "pointer";
+    videoItems.className = "video-item";
+    videoItems.setAttribute("role", "video");
+    videoItems.setAttribute("aria-label", item.title);
 
     videoItems.innerHTML = `
-    <div style="border-radius: 8px; padding: 10px; width: 100%;">
+    <div tabindex="0" style="border-radius: 8px; padding: 10px; width: 100%;">
         <div style="position: relative; width: 100%;">
-            <img style="height: 200px; width: 100%; object-fit: cover; border-radius: 8px;" src="${item.img_src}" alt="${item.title}" />
+            <img 
+                class="video-thumbnail" 
+                src="${item.img_src}" 
+                alt="${item.title}" 
+                role="img" 
+                aria-label="${item.title}" 
+            />
         </div>
-        <div style="display: flex; align-items: flex-start; margin-top: 10px;">
-            <img style="height: 40px; width: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;" src="${item.img_src}" alt="Channel Icon" />
+        <div 
+            style="display: flex; align-items: flex-start; margin-top: 10px;" 
+            role="group" 
+            aria-label="Video details"
+        >
+            <img 
+                class="channel-round-icon" 
+                src="${item.img_src}" 
+                alt="Channel Icon" 
+                role="img" 
+                aria-label="Channel Icon"
+            />
             <div style="flex: 1;">
-                <span style="color: #ffffff; display: block; font-size: 16px; font-weight: bold; line-height: 1.4;">${item.title}</span>
-                <span style="color: #aaaaaa; display: block; font-size: 14px; margin-top: 5px;">${item.channel_name}</span>
-                <span style="color: #aaaaaa; display: block; font-size: 12px; margin-top: 5px;">${item.views} Views • ${item.time} year ago</span>
+                <span class="bold-title" role="heading" aria-level="3">${item.title}</span>
+                <span class="channel-details">${item.channel_name}</span>
+                <span class="channel-details">${item.views} Views • ${item.time} year ago</span>
             </div>
         </div>
     </div>
@@ -102,11 +122,15 @@ function toggleShowSearch() {
         backIcon.style.display = 'flex';
         backIcon.style.justifyContent = 'center';
         backIcon.style.alignItems = 'center';
+        backIcon.style.cursor = 'pointer';
     }
     else {
         backIcon.style.display = '';
     }
 }
+
+// Need to refactor this code to make it more readable and maintainable.
+// due to time constraints, I am unable to refactor the code.
 
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar-container');
@@ -114,7 +138,7 @@ function toggleMenu() {
     const sideBarMenuItemsText = document.querySelectorAll('.sidebar-menu-text');
     if (sidebar.style.display === '') {
         sidebar.style.display = 'flex';
-        sidebar.style.position = 'absolute';
+        sidebar.style.position = 'fixed';
         sidebar.style.justifyContent = 'center';
         sidebar.style.alignItems = 'center';
         sidebar.style.flexDirection = 'column';
@@ -134,5 +158,16 @@ function toggleMenu() {
     }
     else {
         sidebar.style.display = '';
+    }
+}
+
+closeMenu = () => {
+    const sidebar = document.getElementById('sidebar-container');
+    console.log(sidebar.style.display);
+    if (sidebar.style.display === 'flex') {
+        sidebar.style.display = '';
+    }
+    else {
+        sidebar.style.display = 'flex';
     }
 }
