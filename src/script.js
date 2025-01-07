@@ -10,12 +10,20 @@ const sidebar_container = document.getElementById("sidebar-container");
 
 menuItems.forEach((item) => {
     const menuItem = document.createElement("div");
+
     menuItem.innerHTML = `
-    <a id="menu-item" class="sidebar-menu-item" href="${item.link}">
-        <img style="height: 22px; width: 20px;" src="${item.icon}" alt="${item.name}" />
+    <a id="menu-item" 
+       class="sidebar-menu-item" 
+       href="${item.link}" 
+       role="menuitem" 
+       aria-label="${item.name}">
+        <img style="height: 22px; width: 20px;" 
+             src="${item.icon}" 
+             alt="${item.name}" />
         <span class="sidebar-menu-text">${item.name}</span>
     </a>
     `;
+    
     sidebar_container.appendChild(menuItem);
 });
 
